@@ -41,7 +41,7 @@ public class AccountServiceImpl implements AccountService {
 	public String createAccount(Account account) {
 		
 		ResponseEntity<String> exchangeAccountNum = restTemplate.exchange(
-				"http://localhost:8082/accountNum/", 
+				"http://AccountNumberGenerator:8082/accountNum/", 
 				HttpMethod.GET, null, String.class);
 		
 		String accountNum = exchangeAccountNum.getBody();
@@ -49,7 +49,7 @@ public class AccountServiceImpl implements AccountService {
 		account.setAccountNumber(accountNum);
 		
 		ResponseEntity<String> exchangePrize = restTemplate.exchange(
-				"http://localhost:8081/prizeGen/" + accountNum, 
+				"http://PrizeGenerator:8081/prizeGen/" + accountNum, 
 				HttpMethod.GET, null, String.class);
 		
 		accountRepo.save(account);		
