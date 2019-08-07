@@ -6,4 +6,4 @@ RUN mvn package
 
 EXPOSE 8080
 
-ENTRYPOINT java -jar /target/AccountsExercise-0.0.1-SNAPSHOT.jar
+ENTRYPOINT java -jar /target/AccountNumGenerator-0.0.1-SNAPSHOT.jar
