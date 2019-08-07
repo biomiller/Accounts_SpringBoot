@@ -4,6 +4,6 @@ COPY . .
 
 RUN mvn package
 
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT java -jar /target/PrizeGenerator-0.0.1-SNAPSHOT.jar
