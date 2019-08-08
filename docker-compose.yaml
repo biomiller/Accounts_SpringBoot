@@ -1,30 +1,42 @@
 version: '3.7'
 services:         
-    accounts:
-        image: 'biomiller/accounts:latest'
-        build:
-            context: ./AccountsExercise
-            dockerfile: Dockerfile
-        ports:
-            - {target: 8080, protocol: tcp}
-   account-number-generator:
-        image: 'biomiller/account-number-generator:latest'
-        build:
-            context: ./AccountNumGenerator_Six
-            dockerfile: Dockerfile
-        ports:
-            - {target: 8082, protocol: tcp}
-    prize-generator:
-        image: 'biomiller/prize_generator:latest'
-        build:
-            context: ./PrizeGenerator_Six
-            dockerfile: Dockerfile
-        ports:
-            - {target: 8081, protocol: tcp}
-    mongo:
-        image: 'mongo:latest'
-        ports:
-            - {target: 27017, protocol: tcp, published: 27017}
-        deploy:
-         placement:
-          constraints: [node.role == manager]
+ accounts:
+  image: 'biomiller/accounts:latest'
+  build:
+   context: ./AccountsExercise
+   dockerfile: Dockerfile
+  ports:
+   - {target: 8080, protocol: tcp}
+ account-number-generator:
+  image: 'biomiller/account-number-generator:latest'
+  build:
+   context: ./AccountNumGenerator_Six
+   dockerfile: Dockerfile
+  ports:
+   - {target: 8082, protocol: tcp}
+ prize-generator:
+  image: 'biomiller/prize_generator:latest'
+  build:
+   context: ./PrizeGenerator_Six
+   dockerfile: Dockerfile
+  ports:
+   - {target: 8081, protocol: tcp}
+ accountconsumer:
+  image: 'biomiller/account-consumer:latest'
+  build:
+   context: ./AccountConsumer
+   dockerfile: Dockerfile
+  ports:
+   - {target: 8084, protocol: tcp}
+ activemq:
+  image: 'rmohr/activemq'
+  ports:
+   - {target: 8161, protocol: tcp, published: 8161}
+   - {target: 61616, protocol: tcp}
+ mongo:
+  image: 'mongo:latest'
+  ports:
+   - {target: 27017, protocol: tcp, published: 27017}
+  deploy:
+   placement:
+    constraints: [node.role == manager]
