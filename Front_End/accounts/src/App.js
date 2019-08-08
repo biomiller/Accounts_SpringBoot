@@ -6,6 +6,13 @@ import { CreateAccount } from "./components/CreateAccount.js"
 
 export class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    }
+  }
+
   getData = () => {
     axios
       .get("http://accounts:8080/account/all")
