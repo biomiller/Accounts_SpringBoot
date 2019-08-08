@@ -17,11 +17,12 @@ export class App extends Component {
 
   getData = () => {
     axios
-      // .get("http://localhost:8080/accounts/account/all")
-      .get("/accounts/account/all")
+      .get("http://localhost:8080/account/all")
+      // .get("/accounts/account/all")
       .then(response => {
+        console.log(response.data);
         this.setState({
-          data: response.data.reverse()
+          data: response.data
         });
       });
   };
@@ -36,8 +37,8 @@ export class App extends Component {
       <div>
 
         <Router>
-        <TopNavbar loggedIn={this.state.loggedIn} />
-          <Route exact path={`/`} render={() => <AccountList getData={this.getData} />} />
+        <TopNavbar />
+          <Route exact path={`/`} render={() => <AccountList getData={this.getData} data={this.state.data} />} />
           <Route exact path={`/createAccount`} render={() => <CreateAccount getData={this.getData} />} />
 
         </Router>

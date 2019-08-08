@@ -8,10 +8,10 @@ export function AccountList(props) {
         <div>
             <h1>Accounts:</h1>
             {props.data.map(account => (
-                <div key={account._id}>
+                <div key={account.id}>
                     <br></br>
                     <Account
-                        Account={account}
+                        account={account}
                     />
                 </div>
             ))

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +37,9 @@ public class AccountServiceImplTests {
 	
 	@Mock
 	RestTemplate restTemplate;
+	
+	@Mock
+	JmsTemplate jmsTemplate;
 	
 	@Test
 	public void getAllTest() {
@@ -62,26 +67,27 @@ public class AccountServiceImplTests {
 		Mockito.verify(repo).findById((long)1);
 	}
 	
-//	@Test
-//	public void createAccountTest() {
-//		
-//        ResponseEntity<String> accountNum = new ResponseEntity<String>("a2659390674", HttpStatus.OK);
-//		
-//        Mockito.when(restTemplate.exchange("http://localhost:8082/accountNum/",
-//                HttpMethod.GET, null, String.class)).thenReturn(accountNum);
-//        
-//        ResponseEntity<String> prize = new ResponseEntity<String>("No Prize.", HttpStatus.OK);
-//        
-//        
-//        Mockito.when(restTemplate.exchange("http://localhost:8081/getPrize/a2659390674",
-//                HttpMethod.GET, null, String.class)).thenReturn(prize);
-//        
-//		Mockito.when(repo.save(Constants.MOCK_ACCOUNT_1)).thenReturn(Constants.MOCK_ACCOUNT_1);
-//		
-//		assertEquals("No Prize.", service.createAccount(Constants.MOCK_ACCOUNT_1));
-//		
-//		Mockito.verify(repo).save(Constants.MOCK_ACCOUNT_1);
-//	}
+	@Ignore
+	@Test
+	public void createAccountTest() {
+		
+        ResponseEntity<String> accountNum = new ResponseEntity<String>("a2659390674", HttpStatus.OK);
+		
+        Mockito.when(restTemplate.exchange("http://localhost:8082/accountNum/",
+                HttpMethod.GET, null, String.class)).thenReturn(accountNum);
+        
+        ResponseEntity<String> prize = new ResponseEntity<String>("No Prize.", HttpStatus.OK);
+        
+        
+        Mockito.when(restTemplate.exchange("http://localhost:8081/getPrize/a2659390674",
+                HttpMethod.GET, null, String.class)).thenReturn(prize);
+        
+		Mockito.when(repo.save(Constants.MOCK_ACCOUNT_1)).thenReturn(Constants.MOCK_ACCOUNT_1);
+		
+		assertEquals("No Prize.", service.createAccount(Constants.MOCK_ACCOUNT_1));
+		
+		Mockito.verify(repo).save(Constants.MOCK_ACCOUNT_1);
+	}
 	
 	
 	@Test
