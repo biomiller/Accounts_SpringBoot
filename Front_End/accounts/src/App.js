@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
 import { CreateAccount } from "./components/CreateAccount.js"
+import {AccountList } from "./components/"
 
 export class App extends Component {
 
@@ -31,8 +32,8 @@ export class App extends Component {
   render() {
     return (
       <Router>
-
-        <Route exact path={`/`} render={() => <CreateAccount getData={this.getData} />} />
+        <Route exact path={`/`} render={() => <AccountList getData={this.getData} />} />
+        <Route exact path={`/createAccount`} render={() => <CreateAccount getData={this.getData} />} />
 
       </Router>
 
