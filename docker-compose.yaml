@@ -15,7 +15,7 @@ services:
    context: ./Front_End/accounts
    dockerfile: Dockerfile
   ports:
-   - {target: 3000, protocol: tcp, published: 3000}
+   - {target: 3000, protocol: tcp}
  accounts:
   image: 'biomiller/accounts:latest'
   build:
