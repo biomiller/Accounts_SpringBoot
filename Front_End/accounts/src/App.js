@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
 import { CreateAccount } from "./components/CreateAccount.js"
-import {AccountList } from "./components/"
+import { AccountList } from "./components/AccountList.js"
+import {TopNavbar } from "./components/TopNavbar.js" 
 
 export class App extends Component {
 
@@ -31,12 +32,15 @@ export class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Route exact path={`/`} render={() => <AccountList getData={this.getData} />} />
-        <Route exact path={`/createAccount`} render={() => <CreateAccount getData={this.getData} />} />
+      <div>
+        <TopNavbar loggedIn={this.state.loggedIn} />
 
-      </Router>
+        <Router>
+          <Route exact path={`/`} render={() => <AccountList getData={this.getData} />} />
+          <Route exact path={`/createAccount`} render={() => <CreateAccount getData={this.getData} />} />
 
+        </Router>
+      </div>
     );
   };
 };
