@@ -40,6 +40,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public String createAccount(Account account) {
 		
+		//Send GET
 		ResponseEntity<String> exchangeAccountNum = restTemplate.exchange(
 				"http://account-number-generator:8082/accountNum/", 
 				HttpMethod.GET, null, String.class);
