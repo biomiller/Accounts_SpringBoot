@@ -30,6 +30,7 @@ export class CreateAccount extends Component {
         }
 
         axios
+            // .post("https://localhost:8080/accounts/account/createAccount", newAccount)
             .post("/accounts/account/createAccount", newAccount)
             .then(response => {
                 console.log(response);
@@ -44,13 +45,13 @@ export class CreateAccount extends Component {
     }
 
     render() {
-        return(
+        return (
             <form onSubmit={this.handleSubmit}>
                 <h1>Create Account</h1>
 
                 <input required type="text" placeholder="First name"></input>
                 <input required type="text" placeholder="Last name"></input>
-                
+
                 <Button type="submit">Submit</Button>
 
                 <br></br>

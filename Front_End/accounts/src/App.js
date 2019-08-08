@@ -17,6 +17,7 @@ export class App extends Component {
 
   getData = () => {
     axios
+      // .get("http://localhost:8080/accounts/account/all")
       .get("/accounts/account/all")
       .then(response => {
         this.setState({
@@ -33,9 +34,9 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <TopNavbar loggedIn={this.state.loggedIn} />
 
         <Router>
+        <TopNavbar loggedIn={this.state.loggedIn} />
           <Route exact path={`/`} render={() => <AccountList getData={this.getData} />} />
           <Route exact path={`/createAccount`} render={() => <CreateAccount getData={this.getData} />} />
 
