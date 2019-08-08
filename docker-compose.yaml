@@ -1,12 +1,21 @@
 version: '3.7'
 services:
+ nginx:
+  image: 'nginx:latest'
+  volumes:
+   - {type: bind, source: ./nginx/nginx.conf, target: /etc/nginx/nginx.conf}
+  ports:
+   - {target: 80, published: 80, protocol: tcp}
+  deploy:
+   placement:
+    constraints: [node.role == manager] 
  front-end:
   image: 'biomiller/account-front-end:latest'
   build:
    context: ./Front_End/accounts
    dockerfile: Dockerfile
   ports:
-   - {target: 3000, protocol: tcp, published: 3000}
+   - {target: 3000, protocol: tcp}
  accounts:
   image: 'biomiller/accounts:latest'
   build:

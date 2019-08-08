@@ -30,12 +30,12 @@ export class CreateAccount extends Component {
         }
 
         axios
-            .post("http://accounts:8080/account/createAccount", newAccount)
+            .post("/accounts/account/createAccount", newAccount)
             .then(response => {
                 console.log(response);
                 this.props.getData();
                 this.setState({
-                    prize: response
+                    prize: response.data
                 })
 
 
