@@ -1,5 +1,12 @@
 version: '3.7'
-services:         
+services:
+ front-end:
+  image: 'biomiller/account-front-end:latest'
+  build:
+   context: ./Front_End/accounts
+   dockerfile: Dockerfile
+  ports:
+   - {target: 3000, protocol: tcp, published: 3000}
  accounts:
   image: 'biomiller/accounts:latest'
   build:

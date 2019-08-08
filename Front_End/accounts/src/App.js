@@ -8,7 +8,7 @@ export class App extends Component {
 
   getData = () => {
     axios
-      .get("http://accounts:8080/accounts/all")
+      .get("http://accounts:8080/account/all")
       .then(response => {
         this.setState({
           data: response.data.reverse()
